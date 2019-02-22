@@ -1,17 +1,23 @@
 package com.toyapps.chess.domain;
 
-import java.awt.Point;
+import com.toyapps.chess.domain.pieces.ChessPiece;
+import lombok.Getter;
 
-import lombok.Data;
+import java.awt.*;
 
-@Data
 public class ChessSquare {
+    @Getter
 	private Point location;
-	
+
+    @Getter
 	private SquareColor color;
-	
-	public ChessSquare(int x, int y, SquareColor color) {
-		this.location = new Point(x, y);
-		this.color = color;
-	}
+
+    @Getter
+	private ChessPiece piece;
+
+    public ChessSquare(int x, int y, SquareColor color, ChessPiece piece) {
+        this.location = new Point(x, y);
+        this.color = color;
+        this.piece = piece;
+    }
 }

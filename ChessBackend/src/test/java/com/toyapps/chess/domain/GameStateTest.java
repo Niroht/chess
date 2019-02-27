@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(JUnitParamsRunner.class)
@@ -24,9 +25,9 @@ public class GameStateTest {
 		GameState gameState = new GameState();
 
 		// assert
-		assertEquals(8, gameState.getSquares().stream().filter(x -> x.getLocation().y == 1).count());
+		assertEquals(8, gameState.getSquares().entrySet().stream().filter(x -> x.getValue().getRank() == '1').count());
 	}
-	
+
 	@Test
 	public void defaultConstructor_eightFiles() {
 		// arrange
@@ -35,9 +36,9 @@ public class GameStateTest {
 		GameState gameState = new GameState();
 		
 		// assert
-		assertEquals(8, gameState.getSquares().stream().filter(x -> x.getLocation().x == 1).count());
+		assertEquals(8, gameState.getSquares().entrySet().stream().filter(x -> x.getValue().getFile() == 'A').count());
 	}
-	
+
 	@Test
 	public void defaultConstructor_exactlySixtyFourSquares() {
 		// arrange
@@ -59,26 +60,31 @@ public class GameStateTest {
 		// assert
 		assertTrue(gameState
 				.getSquares()
+                .entrySet()
 				.stream()
-				.noneMatch(x -> x.getLocation().x > 8 || x.getLocation().x < 1 || x.getLocation().y > 8 || x.getLocation().y < 1));
+                .map(x -> x.getValue())
+				.noneMatch(x -> x.getFile() > 'H' ||
+                        x.getFile() < 'A' ||
+                        x.getRank() > '8' ||
+                        x.getRank() < '1'));
 	}
 	
 	@Test
 	@Parameters({
-		"8, 1, LIGHT",
-		"8, 8, DARK",
-		"2, 8, DARK",
-		"4, 3, LIGHT"
+		"H1, LIGHT",
+		"H8, DARK",
+		"B8, DARK",
+		"D3, LIGHT"
 	})
-	public void defaultConstructor_squaresColoredCorrectly(int squareX, int squareY, SquareColor expected) {
+	public void defaultConstructor_squaresColoredCorrectly(String location, SquareColor expected) {
 		// arrange
+        GameState systemUnderTest = new GameState();
 		
 		// act
-		GameState gameState = new GameState();
-		ChessSquare bottomRightSquare = gameState.getSquares().stream().filter(x -> x.getLocation().x == squareX && x.getLocation().y == squareY).findFirst().get();
+		ChessSquare result = systemUnderTest.getSquare(location);
 		
 		// assert
-		assertEquals(expected, bottomRightSquare.getColor());
+		assertEquals(expected, result.getColor());
 	}
 
 	@Test
@@ -268,5 +274,17 @@ public class GameStateTest {
 
         // assert
         assertTrue(cornerPieces.allMatch(x -> x instanceof King));
+    }
+
+    @Test
+    public void getSquare_returnsExistingSquare(){
+	    // arrange
+        GameState systemUnderTest = new GameState();
+
+        // act
+        ChessSquare result = systemUnderTest.getSquare("A1");
+
+        // assert
+        assertNotNull(result);
     }
 }

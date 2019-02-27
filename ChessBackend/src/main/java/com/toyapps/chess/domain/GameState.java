@@ -3,25 +3,32 @@ package com.toyapps.chess.domain;
 import com.toyapps.chess.domain.pieces.*;
 import lombok.Getter;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class GameState {
 	@Getter
-	private List<ChessSquare> squares;
+    private Map<String, ChessSquare> squares = new HashMap<>();
 
 	public GameState() {
 	    setupBoard();
 	}
 
 	public List<ChessPiece> getPieces(){
-	    return this.squares.stream().filter(x -> x.getPiece() != null).map(x -> x.getPiece()).collect(Collectors.toList());
+	    return this.squares
+                .entrySet()
+                .stream()
+                .map(x -> x.getValue())
+                .filter(x -> x.getPiece() != null).map(x -> x.getPiece()).collect(Collectors.toList());
+    }
+
+    public ChessSquare getSquare(String coordinateNotation){
+	    return squares.get(coordinateNotation);
     }
 	
 	private void setupBoard() {
-		this.squares = new ArrayList<>();
-		
 		for (int y = 1; y <= 8; y++) {
 			for (int x = 1; x <= 8; x++) {
                 addSquare(y, x);
@@ -83,6 +90,7 @@ public class GameState {
         SquareColor color = (x + y) % 2 == 0 ? SquareColor.DARK : SquareColor.LIGHT;
         ChessPiece piece = addPiece(x, y);
 
-        this.squares.add(new ChessSquare(x, y, color, piece));
+        ChessSquare square = (new ChessSquare(x, y, color, piece));
+        this.squares.put(square.getLocation(), square);
     }
 }

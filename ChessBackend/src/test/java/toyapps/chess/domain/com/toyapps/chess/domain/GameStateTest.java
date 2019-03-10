@@ -1,10 +1,14 @@
-package com.toyapps.chess.domain;
+package toyapps.chess.domain.com.toyapps.chess.domain;
 
-import com.toyapps.chess.domain.pieces.*;
+import toyapps.chess.domain.pieces.*;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import toyapps.chess.domain.ChessSquare;
+import toyapps.chess.domain.GameState;
+import toyapps.chess.domain.SquareColor;
+import toyapps.chess.domain.pieces.*;
 
 import java.awt.*;
 import java.util.Arrays;

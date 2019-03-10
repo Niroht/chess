@@ -1,6 +1,6 @@
-package com.toyapps.chess.domain;
+package toyapps.chess.domain;
 
-import com.toyapps.chess.domain.pieces.ChessPiece;
+import toyapps.chess.domain.pieces.ChessPiece;
 import lombok.Getter;
 
 public class ChessSquare {

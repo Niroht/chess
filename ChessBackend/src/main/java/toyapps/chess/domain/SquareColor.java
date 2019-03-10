@@ -1,4 +1,4 @@
-package com.toyapps.chess.domain;
+package toyapps.chess.domain;
 
 public enum SquareColor {
 	DARK,

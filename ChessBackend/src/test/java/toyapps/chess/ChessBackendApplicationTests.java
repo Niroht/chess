@@ -1,4 +1,4 @@
-package com.toyapps.chess;
+package toyapps.chess;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

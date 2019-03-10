@@ -1,4 +1,4 @@
-package com.toyapps.chess.service;
+package toyapps.chess.service;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -7,8 +7,8 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import com.toyapps.chess.domain.GameState;
-import com.toyapps.chess.service.impl.GameStateServiceImpl;
+import toyapps.chess.domain.GameState;
+import toyapps.chess.service.impl.GameStateServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
 public class GameStateServiceTest {

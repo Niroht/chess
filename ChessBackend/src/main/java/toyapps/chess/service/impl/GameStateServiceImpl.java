@@ -1,7 +1,7 @@
-package com.toyapps.chess.service.impl;
+package toyapps.chess.service.impl;
 
-import com.toyapps.chess.domain.GameState;
-import com.toyapps.chess.service.GameStateService;
+import toyapps.chess.domain.GameState;
+import toyapps.chess.service.GameStateService;
 
 public class GameStateServiceImpl implements GameStateService {
 

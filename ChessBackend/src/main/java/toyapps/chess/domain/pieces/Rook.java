@@ -1,4 +1,4 @@
-package com.toyapps.chess.domain.pieces;
+package toyapps.chess.domain.pieces;
 
 public class Rook extends ChessPiece{
     public Rook(int x, int y) {

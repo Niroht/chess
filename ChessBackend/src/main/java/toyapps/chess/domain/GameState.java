@@ -1,7 +1,8 @@
-package com.toyapps.chess.domain;
+package toyapps.chess.domain;
 
-import com.toyapps.chess.domain.pieces.*;
+import toyapps.chess.domain.pieces.*;
 import lombok.Getter;
+import toyapps.chess.domain.pieces.*;
 
 import java.util.HashMap;
 import java.util.List;

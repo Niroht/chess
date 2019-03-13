@@ -11,4 +11,6 @@ public abstract class ChessPiece {
     protected ChessPiece(int x, int y){
         this.location = new Point(x, y);
     }
+
+    public abstract boolean canMoveToLocation(int x, int y);
 }
